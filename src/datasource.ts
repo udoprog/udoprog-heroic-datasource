@@ -102,11 +102,12 @@ export function HeroicDatasource(instanceSettings, $q, backendSrv, templateSrv) 
     }
 
     for (var gk in group.key) {
-      scoped["key_" + gk] = {text: group.key[gk]};
+      scoped["group_" + gk] = {text: group.key[gk]};
     }
 
-    scoped["key"] = {text: group.key || "<" + String(group.keyCount) + ">"};
     scoped["key_count"] = {text: group.keyCount};
+
+    scoped["group"] = {text: this.buildTags(group.key)};
     scoped["tags"] = {text: this.buildTags(group.tags)};
     return scoped;
   };
