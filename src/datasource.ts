@@ -2,6 +2,8 @@
 
 import angular from 'angular';
 
+import {quoteString} from './utils';
+
 export function HeroicDatasource(instanceSettings, $q, backendSrv, templateSrv) {
   this.type = instanceSettings.type;
   this.url = instanceSettings.url;
@@ -67,7 +69,7 @@ export function HeroicDatasource(instanceSettings, $q, backendSrv, templateSrv) 
           var name;
 
           var scoped = this.buildScoped(group, result.common);
-          name = templateSrv.replaceWithText(target.alias || "A Series", scoped);
+          name = templateSrv.replaceWithText(target.alias || "$tags", scoped);
           output.push({target: name, datapoints: group.values.map(converter)});
         }
       }
@@ -99,10 +101,26 @@ export function HeroicDatasource(instanceSettings, $q, backendSrv, templateSrv) 
       scoped["shard_" + s + "_count"] = {text: "<" + 1 + ">"};
     }
 
-    scoped["key"] = {text: group.key || "<" + String(group.keyCount) + ">"};
+    for (var gk in group.key) {
+      scoped["group_" + gk] = {text: group.key[gk]};
+    }
+
     scoped["key_count"] = {text: group.keyCount};
+
+    scoped["group"] = {text: this.buildTags(group.key)};
+    scoped["tags"] = {text: this.buildTags(group.tags)};
     return scoped;
   };
+
+  this.buildTags = function(tags: any) {
+    var parts = [];
+
+    for (var k in tags) {
+      parts.push(quoteString(k) + ": " + quoteString(tags[k]));
+    }
+
+    return "{" + parts.join(", ") + "}";
+  }
 
   this.seriesCount = function(filter: any[]) {
     return this.doRequest('/metadata/series-count', {

@@ -1,11 +1,11 @@
 {
-  "name": "grafana-heroic-datasource",
+  "name": "udoprog-heroic-datasource",
   "private": true,
   "version": "1.0.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/udoprog/grafana-heroic-datasource"
+    "url": "git+https://github.com/udoprog/udoprog-heroic-datasource"
   },
   "author": "",
   "license": "Apache 2.0",

@@ -33,12 +33,17 @@ module.exports = function(grunt) {
       plugin: {
         src: ['plugin.json', 'LICENSE'],
         dest: 'dist/'
+      },
+      staticContent: {
+        expand: true,
+        src: ['LICENSE', '*.png'],
+        dest: 'dist/'
       }
     },
 
     watch: {
       rebuild_all: {
-        files: ['src/**/*', 'plugin.json', 'LICENSE'],
+        files: ['src/**/*', 'plugin.json', 'LICENSE', '*.png'],
         tasks: ['default'],
         options: {spawn: false}
       }
@@ -48,6 +53,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'clean',
     'copy:sources',
+    'copy:plugin',
+    'copy:staticContent',
     'typescript:dist',
     'copy:plugin'
   ]);

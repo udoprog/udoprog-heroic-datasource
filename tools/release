@@ -7,7 +7,7 @@ dist=$root/dist
 target=$root/target
 plugin_json=$target/plugin.json
 original_plugin_json=$root/plugin.json
-url="https://github.com/udoprog/grafana-heroic-datasource"
+url="https://github.com/udoprog/udoprog-heroic-datasource"
 
 if [[ $# -lt 1 ]]; then
     echo "Usage: $0 <version>"
@@ -37,7 +37,7 @@ echo ""
 grunt
 rsync -av $dist/ $target/
 
-echo "Writigin: $plugin_json"
+echo "Writing: $plugin_json"
 
 jq ".info.version = \"$version\" | .info.updated = \"$updated\"" \
     < $original_plugin_json \
