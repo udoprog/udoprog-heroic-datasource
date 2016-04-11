@@ -69,7 +69,7 @@ export function HeroicDatasource(instanceSettings, $q, backendSrv, templateSrv) 
           var name;
 
           var scoped = this.buildScoped(group, result.common);
-          name = templateSrv.replaceWithText(target.alias || "A Series", scoped);
+          name = templateSrv.replaceWithText(target.alias || "$tags", scoped);
           output.push({target: name, datapoints: group.values.map(converter)});
         }
       }
