@@ -2,6 +2,8 @@
 
 import angular from 'angular';
 
+import {quoteString} from './utils';
+
 export function HeroicDatasource(instanceSettings, $q, backendSrv, templateSrv) {
   this.type = instanceSettings.type;
   this.url = instanceSettings.url;
@@ -99,10 +101,25 @@ export function HeroicDatasource(instanceSettings, $q, backendSrv, templateSrv) 
       scoped["shard_" + s + "_count"] = {text: "<" + 1 + ">"};
     }
 
+    for (var gk in group.key) {
+      scoped["key_" + gk] = {text: group.key[gk]};
+    }
+
     scoped["key"] = {text: group.key || "<" + String(group.keyCount) + ">"};
     scoped["key_count"] = {text: group.keyCount};
+    scoped["tags"] = {text: this.buildTags(group.tags)};
     return scoped;
   };
+
+  this.buildTags = function(tags: any) {
+    var parts = [];
+
+    for (var k in tags) {
+      parts.push(quoteString(k) + ": " + quoteString(tags[k]));
+    }
+
+    return "{" + parts.join(", ") + "}";
+  }
 
   this.seriesCount = function(filter: any[]) {
     return this.doRequest('/metadata/series-count', {
