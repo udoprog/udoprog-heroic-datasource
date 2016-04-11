@@ -1,0 +1,75 @@
+#!/bin/bash
+
+set -e
+
+root=$(readlink -f $(dirname $(dirname $0)))
+dist=$root/dist
+target=$root/target
+plugin_json=$target/plugin.json
+original_plugin_json=$root/plugin.json
+url="https://github.com/udoprog/grafana-heroic-datasource"
+
+if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 <version>"
+    exit 1
+fi
+
+if [[ -d $target ]]; then
+    echo "Target exists: $target"
+    rm -rf $target
+fi
+
+version="$1"
+
+origin=$(git config --get remote.origin.url)
+
+now=$(date --rfc-2822)
+updated=$(date +"%Y-%m-%d")
+
+id=$(jq -r '.id' < $original_plugin_json)
+
+echo "Origin: $origin"
+echo "Version: $version"
+echo "Target: $target"
+echo "Id: $id"
+echo ""
+
+grunt
+rsync -av $dist/ $target/
+
+echo "Writigin: $plugin_json"
+
+jq ".info.version = \"$version\" | .info.updated = \"$updated\"" \
+    < $original_plugin_json \
+    > $plugin_json
+
+(
+    cd target
+
+    git init
+    git remote add origin $origin
+    git add -A
+    git commit -m "release $version ($now)"
+    git push origin +HEAD:refs/tags/rel-$version
+
+    commitId=$(git rev-parse HEAD)
+
+    echo ""
+    echo "CommitId: $commitId"
+    echo ""
+
+cat <<ENDL
+{
+  "id": "$id",
+  "type": "datasource",
+  "url": "$url",
+  "versions": [
+    {
+      "version": "$version",
+      "commit": "$commitId",
+      "url": "$url"
+    }
+  ]
+}
+ENDL
+)

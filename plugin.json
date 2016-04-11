@@ -1,0 +1,34 @@
+{
+  "name": "Heroic",
+  "type": "datasource",
+  "id": "grafana-heroic-datasource",
+
+  "defaultMatchFormat": "glob",
+  "metrics": true,
+  "annotations": false,
+
+  "staticRoot": ".",
+
+  "info": {
+    "description": "Heroic Datasource",
+    "author": {
+      "name": "John-John Tedro",
+      "url": "https://github.com/udoprog"
+    },
+    "links": [
+      {"name": "GitHub", "url": "https://github.com/udoprog/grafana-heroic-datasource"},
+      {"name": "Heroic GitHub", "url": "https://github.com/spotify/heroic"},
+      {"name": "Apache 2.0", "url": "http://www.apache.org/licenses/LICENSE-2.0"}
+    ],
+    "screenshots": [
+      {"name": "Edit", "path": "heroic-screenshot1.png"}
+    ],
+    "version": "1.0.0",
+    "updated": "2016-02-10"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}
