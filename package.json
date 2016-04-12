@@ -1,11 +1,11 @@
 {
-  "name": "grafana-heroic-datasource",
+  "name": "spotify-heroic-datasource",
   "private": true,
   "version": "1.0.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/udoprog/grafana-heroic-datasource"
+    "url": "git+https://github.com/udoprog/spotify-heroic-datasource"
   },
   "author": "",
   "license": "Apache 2.0",

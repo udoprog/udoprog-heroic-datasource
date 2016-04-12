@@ -7,7 +7,7 @@ dist=$root/dist
 target=$root/target
 plugin_json=$target/plugin.json
 original_plugin_json=$root/plugin.json
-url="https://github.com/udoprog/grafana-heroic-datasource"
+url="https://github.com/udoprog/spotify-heroic-datasource"
 
 if [[ $# -lt 1 ]]; then
     echo "Usage: $0 <version>"

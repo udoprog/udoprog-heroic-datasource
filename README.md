@@ -1,4 +1,4 @@
-# grafana-heroic-datasource
+# spotify-heroic-datasource
 
 This repository contains the Heroic datasource for
 [Grafana](https://github.com/grafana/grafana).
@@ -42,8 +42,8 @@ The following assumes that `GF_PLUGIN_DIR` points at the plugin directory of
 Grafana.
 
 ```bash
-$ git clone https://github.com/udoprog/grafana-heroic-datasource
-$ cd ./grafana-heroic-datasource
+$ git clone https://github.com/udoprog/spotify-heroic-datasource
+$ cd ./spotify-heroic-datasource
 $ npm install
 $ grunt
 $ ln -sf $PWD/dist $GF_PLUGIN_DIR/heroic

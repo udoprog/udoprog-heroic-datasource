@@ -1,7 +1,7 @@
 {
   "name": "Heroic",
   "type": "datasource",
-  "id": "grafana-heroic-datasource",
+  "id": "spotify-heroic-datasource",
 
   "defaultMatchFormat": "glob",
   "metrics": true,
@@ -16,7 +16,7 @@
       "url": "https://github.com/udoprog"
     },
     "links": [
-      {"name": "GitHub", "url": "https://github.com/udoprog/grafana-heroic-datasource"},
+      {"name": "GitHub", "url": "https://github.com/udoprog/spotify-heroic-datasource"},
       {"name": "Heroic GitHub", "url": "https://github.com/spotify/heroic"},
       {"name": "Apache 2.0", "url": "http://www.apache.org/licenses/LICENSE-2.0"}
     ],
