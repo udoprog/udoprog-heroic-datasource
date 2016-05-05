@@ -1,11 +1,10 @@
-<query-editor-row ctrl="ctrl">
-<li class="tight-form-flex-wrapper">
-	<input type="text" class="tight-form-clear-input" style="width: 100%;" ng-model="ctrl.target.alias" give-focus="ctrl.target.alias" spellcheck='false' ng-model-onblur></input>
-</li>
-</query-editor-row>
+<query-editor-row query-ctrl="ctrl" can-collapse="false" has-text-edit-mode="true">
+<div class="tight-form-flex-wrapper">
+	<input type="text" class="tight-form-input" style="width: 100%;" ng-model="ctrl.target.alias" give-focus="ctrl.target.alias" spellcheck='false' ng-model-onblur></input>
+</div>
 
-<div class="tight-form">
-	<textarea class="tight-form-textarea" style="width: 100%; font-family: monospace; background: transparent;" rows="5" class="input" ng-model="ctrl.target.query"></textarea>
+<div class="tight-form-flex-wrapper">
+	<textarea class="tight-form-textarea" style="width: 100%; font-family: monospace; background: transparent;" rows="10" ng-model="ctrl.target.query"></textarea>
 </div>
 
 <div class="tight-form">
@@ -32,6 +31,7 @@
 
 	<div class="clearfix"></div>
 </div>
+</query-editor-row>
 
 <div class="tight-form" ng-show="seriesTags !== null">
 	<ul class="tight-form-list">
