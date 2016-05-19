@@ -1,0 +1,52 @@
+<query-editor-row query-ctrl="ctrl" can-collapse="false" has-text-edit-mode="true">
+<div class="tight-form-flex-wrapper">
+	<input type="text" class="tight-form-input" style="width: 100%;" ng-model="ctrl.target.alias" give-focus="ctrl.target.alias" spellcheck='false' ng-model-onblur></input>
+</div>
+
+<div class="tight-form-flex-wrapper">
+	<textarea class="tight-form-textarea" style="width: 100%; font-family: monospace; background: transparent;" rows="10" ng-model="ctrl.target.query"></textarea>
+</div>
+
+<div class="tight-form">
+	<ul class="tight-form-list">
+		<li class="tight-form-flex-wrapper">
+			<li class="tight-form-item">
+				<i ng-show="validQuery" class="fa fa-check"></i>
+				<span ng-hide="validQuery">
+					<i class="fa fa-exclamation"></i>
+					{{queryError}}
+				</span>
+			</li>
+			<li class="tight-form-item" ng-show="validQuery">
+				<span ng-show="countingSeries">
+					<i class="fa fa-spinner fa-spin"></i>
+				</span>
+
+				<span ng-show="seriesCount !== null">
+					{{seriesCount}} matching series
+				</span>
+			</li>
+		</li>
+	</ul>
+
+	<div class="clearfix"></div>
+</div>
+</query-editor-row>
+
+<div class="tight-form" ng-show="seriesTags !== null">
+	<ul class="tight-form-list">
+		<li class="tight-form-item" ng-repeat="(key, values) in seriesTags track by key">
+			<div class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					{{key}} ({{values.length}})
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li ng-repeat="v in values"><a href="" ng-click="ctrl.addTag(key, v)">{{v}}</a></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+
+	<div class="clearfix"></div>
+</div>
